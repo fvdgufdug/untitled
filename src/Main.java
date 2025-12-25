@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 
 public class Main {
+
     public static void main(String[] args) {
         System.out.println("=== OWNERS SECTION ===");
         Owner owner1 = new Owner(1, "Alice", "87070000000", 1);
