@@ -1,14 +1,18 @@
 public class Pet {
-    private int id;
-    private String name;
-    private String species;
-    private int age;
+    protected int id;
+    protected String name;
+    protected String species;
+    protected int age;
 
     public Pet(int id, String name, String species, int age) {
         this.id = id;
-        this.name = name;
-        this.species = species;
-        this.age = age;
+        setName(name);
+        setSpecies(species);
+        setAge(age);
+    }
+
+    public void makeSound() {
+        System.out.println(name + " makes a sound.");
     }
 
     public int getId() { return id; }
@@ -16,25 +20,31 @@ public class Pet {
     public String getSpecies() { return species; }
     public int getAge() { return age; }
 
-    public void setName(String name) { this.name = name; }
-    public void setSpecies(String species) { this.species = species; }
-    public void setAge(int age) { this.age = age; }
+    public void setId(int id) { this.id = id; }
 
-    // 2 метода с логикой
-    public boolean isAdult() {
-        return age >= 1;
+    public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        } else {
+            this.name = "Unknown";
+        }
     }
 
-    public void celebrateBirthday() {
-        this.age++;
+    public void setSpecies(String species) {
+        if (species != null && !species.trim().isEmpty()) {
+            this.species = species;
+        } else {
+            this.species = "Unknown";
+        }
+    }
+
+    public void setAge(int age) {
+        if (age >= 0) this.age = age;
+        else this.age = 0;
     }
 
     @Override
     public String toString() {
-        return "Pet{id=" + id +
-                ", name='" + name + '\'' +
-                ", species='" + species + '\'' +
-                ", age=" + age +
-                '}';
+        return "Pet [ID=" + id + ", Name=" + name + ", Species=" + species + ", Age=" + age + "]";
     }
 }

@@ -1,40 +1,40 @@
 public class Owner {
     private int id;
     private String name;
-    private String phone;
-    private int petsCount;
+    private String phoneNumber;
 
-    public Owner(int id, String name, String phone, int petsCount) {
+    public Owner(int id, String name, String phoneNumber) {
         this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.petsCount = petsCount;
+        setName(name);
+        setPhoneNumber(phoneNumber);
     }
 
     public int getId() { return id; }
     public String getName() { return name; }
-    public String getPhone() { return phone; }
-    public int getPetsCount() { return petsCount; }
+    public String getPhoneNumber() { return phoneNumber; }
 
-    public void setName(String name) { this.name = name; }
-    public void setPhone(String phone) { this.phone = phone; }
-    public void setPetsCount(int petsCount) { this.petsCount = petsCount; }
+    public void setId(int id) { this.id = id; }
 
-    // 2 метода с логикой
-    public void addPet() {
-        petsCount++;
+    public void setName(String name) {
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Error: Owner name cannot be empty.");
+            this.name = "Unknown Owner";
+        }
     }
 
-    public boolean hasManyPets() {
-        return petsCount >= 3;
+    public void setPhoneNumber(String phoneNumber) {
+        if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
+            this.phoneNumber = phoneNumber;
+        } else {
+            System.out.println("Error: Phone number cannot be empty.");
+            this.phoneNumber = "No Phone";
+        }
     }
 
     @Override
     public String toString() {
-        return "Owner{id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", petsCount=" + petsCount +
-                '}';
+        return "Owner [ID=" + id + ", Name=" + name + ", Phone=" + phoneNumber + "]";
     }
 }

@@ -1,52 +1,34 @@
-import java.time.LocalDateTime;
-
 public class Appointment {
     private int id;
-    private Pet pet;
-    private Owner owner;
+    private String petName;
+    private String date;
     private String reason;
-    private LocalDateTime dateTime;
-    private boolean cancelled;
 
-    public Appointment(int id, Pet pet, Owner owner,
-                       String reason, LocalDateTime dateTime) {
+    public Appointment(int id, String petName, String date, String reason) {
         this.id = id;
-        this.pet = pet;
-        this.owner = owner;
-        this.reason = reason;
-        this.dateTime = dateTime;
-        this.cancelled = false;
+        setPetName(petName);
+        this.date = date;
+        setReason(reason);
     }
 
-    public int getId() { return id; }
-    public Pet getPet() { return pet; }
-    public Owner getOwner() { return owner; }
-    public String getReason() { return reason; }
-    public LocalDateTime getDateTime() { return dateTime; }
-    public boolean isCancelled() { return cancelled; }
-
-    public void setReason(String reason) { this.reason = reason; }
-    public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
-
-    // 2 метода с логикой
-    public void cancel() {
-        cancelled = true;
+    public void setPetName(String petName) {
+        if (petName != null && !petName.isEmpty()) {
+            this.petName = petName;
+        } else {
+            this.petName = "Unknown Pet";
+        }
     }
 
-    public void reschedule(LocalDateTime newDateTime) {
-        if (!cancelled) {
-            this.dateTime = newDateTime;
+    public void setReason(String reason) {
+        if (reason != null && !reason.isEmpty()) {
+            this.reason = reason;
+        } else {
+            this.reason = "General Checkup";
         }
     }
 
     @Override
     public String toString() {
-        return "Appointment{id=" + id +
-                ", pet=" + pet.getName() +
-                ", owner=" + owner.getName() +
-                ", reason='" + reason + '\'' +
-                ", dateTime=" + dateTime +
-                ", cancelled=" + cancelled +
-                '}';
+        return "Appointment [ID=" + id + ", Pet=" + petName + ", Date=" + date + ", Reason=" + reason + "]";
     }
 }
