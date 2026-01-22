@@ -1,17 +1,19 @@
+package model;
+
 public class Dog extends Pet {
     private String breed;
 
     public Dog(int id, String name, int age, String breed) {
         super(id, name, "Dog", age);
-        this.breed = breed;
+        setBreed(breed);
     }
 
-    public String getBreed() {
-        return breed;
-    }
+    public String getBreed() { return breed; }
 
     public void setBreed(String breed) {
-        this.breed = breed;
+        if (breed == null || breed.trim().isEmpty())
+            throw new IllegalArgumentException("Breed cannot be empty");
+        this.breed = breed.trim();
     }
 
     @Override

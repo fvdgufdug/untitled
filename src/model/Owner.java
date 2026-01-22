@@ -1,10 +1,12 @@
+package model;
+
 public class Owner {
     private int id;
     private String name;
     private String phoneNumber;
 
     public Owner(int id, String name, String phoneNumber) {
-        this.id = id;
+        setId(id);
         setName(name);
         setPhoneNumber(phoneNumber);
     }
@@ -13,24 +15,21 @@ public class Owner {
     public String getName() { return name; }
     public String getPhoneNumber() { return phoneNumber; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        if (id <= 0) throw new IllegalArgumentException("Owner ID must be positive");
+        this.id = id;
+    }
 
     public void setName(String name) {
-        if (name != null && !name.trim().isEmpty()) {
-            this.name = name;
-        } else {
-            System.out.println("Error: Owner name cannot be empty.");
-            this.name = "Unknown Owner";
-        }
+        if (name == null || name.trim().isEmpty())
+            throw new IllegalArgumentException("Owner name cannot be empty");
+        this.name = name.trim();
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
-            this.phoneNumber = phoneNumber;
-        } else {
-            System.out.println("Error: Phone number cannot be empty.");
-            this.phoneNumber = "No Phone";
-        }
+        if (phoneNumber == null || phoneNumber.trim().isEmpty())
+            throw new IllegalArgumentException("Phone number cannot be empty");
+        this.phoneNumber = phoneNumber.trim();
     }
 
     @Override
